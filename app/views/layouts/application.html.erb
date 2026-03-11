@@ -18,6 +18,16 @@
   </head>
 
   <body>
+    <!-- 通知用フラッシュメッセージ -->
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <!-- 警告用フラッシュメッセージ -->
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
