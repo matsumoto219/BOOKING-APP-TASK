@@ -19,4 +19,7 @@ Rails.application.routes.draw do
 
   # ホーム画面のルートを追加
   root "home#index"
+
+  # 施設(Room)のCRUD処理用ルーティング
+  resources :rooms
 end
