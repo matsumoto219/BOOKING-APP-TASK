@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get "reservations/new"
-  get "reservations/create"
-  get "reservations/index"
-  get "reservations/show"
   get "rooms/index"
   get "rooms/new"
   get "rooms/create"
@@ -29,4 +25,7 @@ Rails.application.routes.draw do
 
   # 施設(Room)のCRUD処理用ルーティング
   resources :rooms
+
+  # 予約関連のルーティング
+  resources :reservations, only: [ :new, :create, :index, :show ]
 end
