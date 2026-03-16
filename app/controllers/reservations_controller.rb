@@ -5,6 +5,19 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
   end
 
+  # 予約確認
+  def confirm
+    @room = Room.find(reservation_params[:room_id])
+    @reservation = current_user.reservations.build(reservation_params)
+
+    if @reservation.valid?
+      @stay_days = @reservation.stay_days
+      @total_price = @reservation.calculated_total_price
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   # CREATE
   def create
     @room = Room.find(reservation_params[:room_id])

@@ -3,7 +3,7 @@
 <p>施設名: <%= @room.name %></p>
 <p>料金: <%= @room.price %>円/日</p>
 
-<%= form_with model: @reservation do |f| %>
+<%= form_with model: @reservation, url: confirm_reservations_path do |f| %>
   <%= f.hidden_field :room_id, value: @room.id %>
 
   <div>

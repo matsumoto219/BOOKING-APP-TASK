@@ -28,4 +28,7 @@ Rails.application.routes.draw do
 
   # 予約関連のルーティング
   resources :reservations, only: [ :new, :create, :index, :show ]
+  collection do
+    post :confirm
+  end
 end
