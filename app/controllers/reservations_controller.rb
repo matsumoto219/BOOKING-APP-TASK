@@ -1,4 +1,6 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
+
   # CREATE
   def new
     @room = Room.find(params[:room_id])
@@ -14,6 +16,7 @@ class ReservationsController < ApplicationController
       @stay_days = @reservation.stay_days
       @total_price = @reservation.calculated_total_price
     else
+      @room = Room.find(reservation_params[:room_id])
       render :new, status: :unprocessable_entity
     end
   end
@@ -22,6 +25,7 @@ class ReservationsController < ApplicationController
   def create
     @room = Room.find(reservation_params[:room_id])
     @reservation = current_user.reservations.build(reservation_params)
+    @reservation.total_price = @reservation.calculated_total_price
 
     if @reservation.save
       redirect_to reservations_path, notice: "予約しました"
@@ -43,6 +47,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:room_id, :check_in, :check_out, :people, :total_price)
+    params.require(:reservation).permit(:room_id, :check_in, :check_out, :people)
   end
 end
