@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get "rooms/index"
-  get "rooms/new"
-  get "rooms/create"
-  get "rooms/show"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -27,8 +23,9 @@ Rails.application.routes.draw do
   resources :rooms
 
   # 予約関連のルーティング
-  resources :reservations, only: [ :new, :create, :index, :show ]
-  collection do
-    post :confirm
+  resources :reservations, only: [ :new, :create, :index, :show ] do
+    collection do
+      post :confirm
+    end
   end
 end
