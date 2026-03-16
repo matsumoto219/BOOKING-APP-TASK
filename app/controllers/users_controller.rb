@@ -15,6 +15,12 @@ class UsersController < ApplicationController
   def update_account
     @user = current_user
 
+    # パスワードチェック
+    params_to_update = account_params
+    if params_to_update[:password].blank? && params_to_update[:password_confirmation].blank?
+      params_to_update = params_to_update.except(:password, :password_confirmation)
+    end
+
     if @user.update(account_params)
       redirect_to user_path, notice: "アカウント情報を更新しました"
     else
