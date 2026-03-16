@@ -13,4 +13,6 @@
 <p>料金: <%= @room.price %>円</p>
 <p>住所: <%= @room.address %></p>
 
+<%= link_to "予約する", new_reservation_path(room_id: @room.id) %>
+
 <p><%= link_to "一覧に戻る", rooms_path %></p>
