@@ -3,10 +3,12 @@ class RoomsController < ApplicationController
 
   # READ
   def index
+    @rooms = current_user.rooms
   end
 
   # READ
   def show
+    @room = Room.find(params[:id])
   end
 
   # CREATE

@@ -1,2 +1,8 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1>施設詳細</h1>
+
+<p>施設名: <%= @room.name %></p>
+<p>施設詳細: <%= @room.description %></p>
+<p>料金: <%= @room.price %>円</p>
+<p>住所: <%= @room.address %></p>
+
+<p><%= link_to "一覧に戻る", rooms_path %></p>

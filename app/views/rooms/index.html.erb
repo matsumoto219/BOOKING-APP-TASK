@@ -1,3 +1,27 @@
 <h1>施設一覧</h1>
 
 <%= link_to "施設登録", new_room_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>施設名</th>
+      <th>施設詳細</th>
+      <th>料金</th>
+      <th>住所</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= link_to room.name, room_path(room) %></td>
+        <td><%= room.description %></td>
+        <td><%= room.price %>円</td>
+        <td><%= room.address %></td>
+        <td><%= room.created_at.strftime("%Y/%m/%d") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
