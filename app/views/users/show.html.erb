@@ -1,0 +1,9 @@
+<h1>アカウント情報</h1>
+
+<p>メールアドレス: <%= @user.email %></p>
+<p>パスワード: ********</p>
+<p>名前: <%= @user.name %></p>
+<p>自己紹介: <%= @user.introduction %></p>
+
+<p><%= link_to "アカウント情報を編集", edit_account_user_path %></p>
+<p><%= link_to "プロフィールを編集", edit_profile_user_path %></p>

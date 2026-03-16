@@ -28,4 +28,12 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
+
+  # ユーザー関連のルーティング
+  resource :user, only: [ :show ] do
+    get :edit_account
+    patch :update_account
+    get :edit_profile
+    patch :update_profile
+  end
 end
