@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
   def confirm
     @room = Room.find(reservation_params[:room_id])
     @reservation = current_user.reservations.build(reservation_params)
+    @reservation.room = @room
 
     if @reservation.valid?
       @stay_days = @reservation.stay_days

@@ -7,10 +7,21 @@
 
   <!-- サインインチェック -->
   <% if user_signed_in? %>
-    <p>
-      <%= current_user.name %> さん
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
-    </p>
+    <div class="header-user">
+      <% if current_user.image_name.present? && current_user.image_name.match?(/\.(png|jpe?g|gif|webp)\z/i) %>
+        <%= image_tag "/#{current_user.image_name}", size: "40x40", class: "header-icon" %>
+      <% else %>
+        <%= image_tag "/default_user.png", size: "40x40", class: "header-icon" %>
+      <% end %>
+
+      <span class="header-username"><%= current_user.name %> さん</span>
+
+      <div class="header-menu">
+        <%= link_to "アカウント", user_path %>
+        <%= link_to "プロフィール編集", edit_profile_user_path %>
+        <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+      </div>
+    </div>
   <% else %>
     <%= link_to "ログイン", new_user_session_path %>
     <%= link_to "新規登録", new_user_registration_path %>

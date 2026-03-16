@@ -12,7 +12,7 @@ class Reservation < ApplicationRecord
   def stay_days
     return 0 if check_in.blank? || check_out.blank?
 
-    check_out - check_in
+    (check_out - check_in).to_i
   end
 
   def calculated_total_price
