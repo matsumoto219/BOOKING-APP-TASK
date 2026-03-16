@@ -11,6 +11,21 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
+  # READ
+  def search
+    @keyword = params[:keyword]
+    @rooms = Room.all
+
+    if @keyword.present?
+      @rooms = @rooms.where(
+        "address LIKE ? OR name LIKE ? OR description LIKE ?",
+        "%#{@keyword}%",
+        "%#{@keyword}%",
+        "%#{@keyword}%"
+      )
+    end
+  end
+
   # CREATE
   def new
     @room = Room.new

@@ -1,4 +1,11 @@
 <header>
+  <!-- 検索フォーム -->
+  <%= form_with url: rooms_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, placeholder: "エリア・施設名・施設詳細で検索" %>
+    <%= f.submit "検索" %>
+  <% end %>
+
+  <!-- サインインチェック -->
   <% if user_signed_in? %>
     <p>
       <%= current_user.name %> さん
