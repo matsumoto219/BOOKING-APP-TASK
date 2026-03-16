@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       params_to_update = params_to_update.except(:password, :password_confirmation)
     end
 
-    if @user.update(account_params)
+    if @user.update(params_to_update)
       redirect_to user_path, notice: "アカウント情報を更新しました"
     else
       render :edit_account, status: :unprocessable_entity
