@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get "reservations/new"
+  get "reservations/create"
+  get "reservations/index"
+  get "reservations/show"
   get "rooms/index"
   get "rooms/new"
   get "rooms/create"
