@@ -1,5 +1,13 @@
 <h1>施設詳細</h1>
 
+<p>
+  <% if @room.image_name.present? %>
+    <%= image_tag @room.image_name, size: "300x200" %>
+  <% else %>
+    <%= image_tag "/default_room.png", size: "300x200" %>
+  <% end %>
+</p>
+
 <p>施設名: <%= @room.name %></p>
 <p>施設詳細: <%= @room.description %></p>
 <p>料金: <%= @room.price %>円</p>
