@@ -8,8 +8,8 @@
   <!-- サインインチェック -->
   <% if user_signed_in? %>
     <div class="header-user">
-      <% if current_user.image_name.present? && current_user.image_name.match?(/\.(png|jpe?g|gif|webp)\z/i) %>
-        <%= image_tag "/#{current_user.image_name}", size: "40x40", class: "header-icon" %>
+      <% if current_user.image.attached? %>
+        <%= image_tag current_user.image, size: "40x40", class: "header-icon" %>
       <% else %>
         <%= image_tag "/default_user.png", size: "40x40", class: "header-icon" %>
       <% end %>

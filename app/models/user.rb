@@ -7,4 +7,7 @@ class User < ApplicationRecord
   # roomモデルのリレーション
   has_many :rooms, dependent: :destroy
   has_many :reservations, dependent: :destroy
+
+  # 画像アップロード用
+  has_one_attached :image
 end

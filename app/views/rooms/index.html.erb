@@ -18,8 +18,8 @@
     <% @rooms.each do |room| %>
       <tr>
         <td>
-          <% if room.image_name.present? %>
-            <%= image_tag room.image_name, size: "100x70" %>
+          <% if room.image.attached? %>
+            <%= image_tag room.image, size: "100x70" %>
           <% else %>
             <%= image_tag "/default_room.png", size: "100x70" %>
           <% end %>
