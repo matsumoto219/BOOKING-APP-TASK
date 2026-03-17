@@ -13,15 +13,19 @@ class RoomsController < ApplicationController
 
   # READ
   def search
-    @keyword = params[:keyword]
+    @area_keyword = params[:area_keyword]
+    @freeword = params[:freeword]
     @rooms = Room.all
 
-    if @keyword.present?
+    if @area_keyword.present?
+      @rooms = @rooms.where("address LIKE ?", "%#{@area_keyword}%")
+    end
+
+    if @freeword.present?
       @rooms = @rooms.where(
-        "address LIKE ? OR name LIKE ? OR description LIKE ?",
-        "%#{@keyword}%",
-        "%#{@keyword}%",
-        "%#{@keyword}%"
+        "name LIKE ? OR description LIKE ?",
+        "%#{@freeword}%",
+        "%#{@freeword}%"
       )
     end
   end
