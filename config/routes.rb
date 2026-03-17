@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :rooms
 
   # 予約関連のルーティング
-  resources :reservations, only: [ :new, :create, :index, :show ] do
+  resources :reservations, only: [ :new, :create, :index ] do
     collection do
       post :confirm
     end
