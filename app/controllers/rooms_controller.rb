@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_room, only: [ :show, :edit, :update, :destroy ]
+  before_action :ensure_correct_user, only: [ :edit, :update, :destroy ]
 
   # READ
   def index
@@ -8,7 +10,6 @@ class RoomsController < ApplicationController
 
   # READ
   def show
-    @room = Room.find(params[:id])
   end
 
   # READ
@@ -52,13 +53,28 @@ class RoomsController < ApplicationController
 
   # UPDATE
   def update
+    if @room.update(room_params)
+      redirect_to room_path(@room), notice: "施設情報を更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   # DELETE
   def destroy
+    @room.destroy
+    redirect_to rooms_path, notice: "施設を削除しました"
   end
 
   private
+
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  def ensure_correct_user
+    redirect_to rooms_path, alert: "権限がありません" unless @room.user == current_user
+  end
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
