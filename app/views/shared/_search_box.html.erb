@@ -1,0 +1,8 @@
+<!-- 検索フォーム -->
+<div class="header-search">
+  <%= form_with url: rooms_search_path, method: :get, local: true do |f| %>
+    <%= text_field_tag :area_keyword, params[:area_keyword], placeholder: "エリア名を入力", autocomplete: "off" %>
+    <%= text_field_tag :freeword, params[:freeword], placeholder: "フリーワードを入力", autocomplete: "off" %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
