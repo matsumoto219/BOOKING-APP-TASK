@@ -11,6 +11,8 @@
       <th>料金</th>
       <th>住所</th>
       <th>作成日</th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
 
@@ -29,6 +31,12 @@
         <td><%= room.price %>円</td>
         <td><%= room.address %></td>
         <td><%= room.created_at.strftime("%Y/%m/%d") %></td>
+        <td>
+          <%= link_to "編集", edit_room_path(room) %>
+        </td>
+        <td>
+          <%= link_to "削除", room_path(room), data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

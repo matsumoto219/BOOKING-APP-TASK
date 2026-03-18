@@ -14,5 +14,9 @@
 <p>住所: <%= @room.address %></p>
 
 <%= link_to "予約する", new_reservation_path(room_id: @room.id) %>
+<p>
+  <%= link_to "編集", edit_room_path(@room) %>
+  <%= link_to "削除", room_path(@room), data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか？" } %>
+</p>
 
 <p><%= link_to "戻る", request.referer || rooms_path %></p>
