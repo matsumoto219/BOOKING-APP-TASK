@@ -1,8 +1,22 @@
 <!-- 検索フォーム -->
-<div class="header-search">
-  <%= form_with url: rooms_search_path, method: :get, local: true do |f| %>
-    <%= text_field_tag :area_keyword, params[:area_keyword], placeholder: "エリア名を入力", autocomplete: "off" %>
-    <%= text_field_tag :freeword, params[:freeword], placeholder: "フリーワードを入力", autocomplete: "off" %>
-    <%= f.submit "検索" %>
-  <% end %>
+<div class="search-box card border-0 shadow-sm mb-3 mx-auto" style="max-width: 900px; background-color: #f8f9fa;">
+  <div class="card-body">
+    <%= form_with url: rooms_search_path, method: :get, local: true do |f| %>
+      <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-4">
+          <%= text_field_tag :area_keyword, params[:area_keyword], placeholder: "エリア名を入力", autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <%= text_field_tag :freeword, params[:freeword], placeholder: "フリーワードを入力", autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="col-12 col-md-3 d-grid">
+          <button type="submit" class="btn btn-secondary">
+            <i class="bi bi-search"></i> 検索
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
