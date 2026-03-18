@@ -1,0 +1,27 @@
+<h1>予約入力</h1>
+
+<p>施設名: <%= @room.name %></p>
+<p>料金: <%= @room.price %>円/日</p>
+
+<%= form_with model: @reservation, data: { turbo: false } do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+
+  <div>
+    <%= f.label :check_in, "チェックイン" %><br>
+    <%= f.date_field :check_in %>
+  </div>
+
+  <div>
+    <%= f.label :check_out, "チェックアウト" %><br>
+    <%= f.date_field :check_out %>
+  </div>
+
+  <div>
+    <%= f.label :people, "人数" %><br>
+    <%= f.number_field :people %>
+  </div>
+
+  <div>
+    <%= f.submit "予約を変更する" %>
+  </div>
+<% end %>

@@ -10,6 +10,8 @@
       <th>チェックイン</th>
       <th>チェックアウト</th>
       <th>予約確定日時</th>
+      <th>予約変更</th>
+      <th>削除</th>
     </tr>
   </thead>
 
@@ -29,6 +31,10 @@
         <td><%= reservation.check_in.strftime("%Y/%m/%d") if reservation.check_in.present? %></td>
         <td><%= reservation.check_out.strftime("%Y/%m/%d") if reservation.check_out.present? %></td>
         <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td><%= link_to "予約変更", edit_reservation_path(reservation) %></td>
+        <td>
+          <%= link_to "削除", reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: "予約を削除しますか？" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
