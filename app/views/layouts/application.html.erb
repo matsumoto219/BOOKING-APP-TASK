@@ -30,15 +30,25 @@
     <!-- ヘッダー -->
     <%= render "shared/header" %>
 
-    <!-- 通知用フラッシュメッセージ -->
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
+    <!-- 検索ボックス -->
+    <% if controller_name == "rooms" && action_name.in?(["index", "search"]) %>
+      <%= render "shared/search_box" %>
     <% end %>
 
-    <!-- 警告用フラッシュメッセージ -->
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+    <!-- フラッシュメッセージ -->
+    <div class="container" style="max-width: 600px;">
+      <% if notice %>
+        <div class="alert alert-success text-center" role="alert">
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="alert alert-danger text-center" role="alert">
+          <%= alert %>
+        </div>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>
