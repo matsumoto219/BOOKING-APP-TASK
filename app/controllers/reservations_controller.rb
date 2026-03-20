@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
     @reservation.total_price = @reservation.calculated_total_price
 
     if @reservation.save
-      redirect_to reservations_path, notice: "予約しました"
+      redirect_to reservations_path, notice: "予約が完了しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -70,7 +70,7 @@ class ReservationsController < ApplicationController
   # DELETE
   def destroy
     @reservation.destroy
-    redirect_to reservations_path, notice: "予約を削除しました"
+    redirect_to reservations_path, notice: "予約を取り消しました"
   end
 
   private

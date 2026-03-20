@@ -38,7 +38,7 @@
               <td class="d-none d-md-table-cell" title="<%= reservation.room.description %>">
                 <%= truncate(reservation.room.description, length: 30) %>
               </td>
-              <td><%= reservation.total_price %>円</td>
+              <td><%= number_with_delimiter(reservation.total_price) %>円</td>
               <td><%= reservation.check_in.strftime("%Y/%m/%d") if reservation.check_in.present? %></td>
               <td><%= reservation.check_out.strftime("%Y/%m/%d") if reservation.check_out.present? %></td>
               <td class="d-none d-md-table-cell"><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
