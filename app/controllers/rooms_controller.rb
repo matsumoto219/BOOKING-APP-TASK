@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [ :show, :search ]
   before_action :set_room, only: [ :show, :edit, :update, :destroy ]
   before_action :ensure_correct_user, only: [ :edit, :update, :destroy ]
 
@@ -16,7 +16,10 @@ class RoomsController < ApplicationController
   def search
     @area_keyword = params[:area_keyword]
     @freeword = params[:freeword]
+    @city = params[:city]
     @rooms = Room.all
+
+    @rooms = filter_by_city(@rooms, @city) if @city.present?
 
     if @area_keyword.present?
       @rooms = @rooms.where("address LIKE ?", "%#{@area_keyword}%")
@@ -24,7 +27,8 @@ class RoomsController < ApplicationController
 
     if @freeword.present?
       @rooms = @rooms.where(
-        "name LIKE ? OR description LIKE ?",
+        "name LIKE ? OR description LIKE ? OR address LIKE ?",
+        "%#{@freeword}%",
         "%#{@freeword}%",
         "%#{@freeword}%"
       )
@@ -78,5 +82,27 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:name, :description, :price, :address, :image)
+  end
+
+  def filter_by_city(rooms, city)
+    keywords =
+      case city
+      when "tokyo"
+        [ "東京", "tokyo" ]
+      when "osaka"
+        [ "大阪", "osaka" ]
+      when "kyoto"
+        [ "京都", "kyoto" ]
+      when "sapporo"
+        [ "札幌", "sapporo" ]
+      else
+        []
+      end
+
+    return rooms if keywords.empty?
+
+    conditions = keywords.map { "address LIKE ?" }.join(" OR ")
+    values = keywords.map { |keyword| "%#{keyword}%" }
+    rooms.where(conditions, *values)
   end
 end

@@ -31,7 +31,7 @@
     <%= render "shared/header" %>
 
     <!-- 検索ボックス -->
-    <% if controller_name == "rooms" && action_name.in?(["index", "search"]) %>
+    <% if (controller_name == "rooms" && action_name.in?(["index", "search"])) || (controller_name == "reservations" && action_name == "index") %>
       <%= render "shared/search_box" %>
     <% end %>
 

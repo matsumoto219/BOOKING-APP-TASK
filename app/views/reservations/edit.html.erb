@@ -1,27 +1,62 @@
-<h1>予約入力</h1>
+<div class="container mt-4 mx-auto" style="max-width: 900px;">
+  <h1 class="fs-4 mb-4">予約変更</h1>
 
-<p>施設名: <%= @room.name %></p>
-<p>料金: <%= @room.price %>円/日</p>
+  <% if @reservation.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= form_with model: @reservation, data: { turbo: false } do |f| %>
-  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= form_with model: @reservation, data: { turbo: false } do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id %>
 
-  <div>
-    <%= f.label :check_in, "チェックイン" %><br>
-    <%= f.date_field :check_in %>
-  </div>
+    <!-- 施設情報 -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row align-items-center g-3">
+          <div class="col-12 col-md-4">
+            <% if @room.image.present? %>
+              <%= image_tag @room.image, class: "img-fluid rounded" %>
+            <% end %>
+          </div>
+          <div class="col-12 col-md-8">
+            <h5 class="card-title mb-2"><%= @room.name %></h5>
+            <p class="mb-1 text-muted">料金: <%= @room.price %>円 / 日</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :check_out, "チェックアウト" %><br>
-    <%= f.date_field :check_out %>
-  </div>
+    <!-- 予約入力 -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <%= f.label :check_in, "チェックイン", class: "form-label" %>
+            <%= f.date_field :check_in, class: "form-control" %>
+          </div>
 
-  <div>
-    <%= f.label :people, "人数" %><br>
-    <%= f.number_field :people %>
-  </div>
+          <div class="col-12 col-md-4">
+            <%= f.label :check_out, "チェックアウト", class: "form-label" %>
+            <%= f.date_field :check_out, class: "form-control" %>
+          </div>
 
-  <div>
-    <%= f.submit "予約を変更する" %>
-  </div>
-<% end %>
+          <div class="col-12 col-md-4">
+            <%= f.label :people, "人数", class: "form-label" %>
+            <%= f.number_field :people, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ボタンエリア -->
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to "戻る", reservations_path, class: "btn btn-outline-secondary" %>
+      <%= f.submit "予約を変更する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

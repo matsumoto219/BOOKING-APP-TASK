@@ -1,25 +1,49 @@
-<h1>検索結果</h1>
+<div class="container mt-4 mx-auto" style="max-width: 1400px;">
+  <h1 class="mb-4 fs-4">検索結果</h1>
 
-<p>検索件数: <%= @rooms.count %>件</p>
+  <!-- 検索件数カウント -->
+  <div class="card shadow-sm mb-3 mx-auto" style="max-width: 500px;">
+    <div class="card-body text-center">
+      検索件数: <%= @rooms.count %>件
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>施設名</th>
-      <th>住所</th>
-      <th>施設詳細</th>
-      <th>料金</th>
-    </tr>
-  </thead>
+  <!-- 検索一覧テーブル -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-body p-0">
+      <table class="table table-striped table-hover mb-0 align-middle">
+        <thead>
+          <tr>
+            <th>施設画像</th>
+            <th>施設名</th>
+            <th>住所</th>
+            <th>施設詳細</th>
+            <th>料金</th>
+            <th></th>
+          </tr>
+        </thead>
 
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= link_to room.name, room_path(room) %></td>
-        <td><%= room.address %></td>
-        <td><%= room.description %></td>
-        <td><%= room.price %>円/日</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td>
+                <% if room.image.attached? %>
+                  <%= image_tag room.image, size: "100x70", class: "rounded" %>
+                <% else %>
+                  <%= image_tag "/default_room.png", size: "100x70", class: "rounded" %>
+                <% end %>
+              </td>
+              <td><%= room.name %></td>
+              <td><%= room.address %></td>
+              <td title="<%= room.description %>">
+                <%= truncate(room.description, length: 40) %>
+              </td>
+              <td><%= room.price %>円/日</td>
+              <td><%= link_to "詳細", room_path(room), class: "btn btn-outline-secondary px-3 py-2" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

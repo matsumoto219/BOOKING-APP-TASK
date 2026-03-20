@@ -1,2 +1,30 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container">
+  <div class="row min-vh-100 align-items-center justify-content-center py-5">
+    <div class="col-12 col-lg-10">
+      <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold mb-3">理想の宿を見つけよう</h1>
+        <p class="lead text-muted mb-0">気になる施設名やキーワードから、ぴったりの宿泊先を検索できます</p>
+      </div>
+
+      <!-- 検索ボックス -->
+      <div class="card border-0 shadow-sm mx-auto" style="max-width: 900px; background-color: #f8f9fa;">
+        <div class="card-body p-4 p-md-5">
+          <%= form_with url: rooms_search_path, method: :get, local: true do %>
+            <div class="row g-3 align-items-center justify-content-center">
+              <div class="col-12 col-md-9">
+                <%= text_field_tag :freeword, params[:freeword], placeholder: "施設名・エリア・こだわり条件などで検索", autocomplete: "off", class: "form-control form-control-lg" %>
+              </div>
+
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="bi bi-search"></i> 検索
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
