@@ -25,6 +25,55 @@
         </div>
       </div>
 
-    </div>
+      <!-- エリアカード -->
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+        <div class="col">
+          <%= link_to rooms_search_path(city: "tokyo"), class: "text-decoration-none text-dark" do %>
+            <div class="card h-100 border-0 shadow-sm">
+              <%= image_tag "/tokyo.png", class: "card-img-top", alt: "東京" %>
+              <div class="card-body text-center">
+                <h5 class="card-title mb-1">東京</h5>
+                <p class="text-muted mb-0">Tokyo</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col">
+          <%= link_to rooms_search_path(city: "osaka"), class: "text-decoration-none text-dark" do %>
+            <div class="card h-100 border-0 shadow-sm">
+              <%= image_tag "/osaka.png", class: "card-img-top", alt: "大阪" %>
+              <div class="card-body text-center">
+                <h5 class="card-title mb-1">大阪</h5>
+                <p class="text-muted mb-0">Osaka</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col">
+          <%= link_to rooms_search_path(city: "kyoto"), class: "text-decoration-none text-dark" do %>
+            <div class="card h-100 border-0 shadow-sm">
+              <%= image_tag "/kyoto.png", class: "card-img-top", alt: "京都" %>
+              <div class="card-body text-center">
+                <h5 class="card-title mb-1">京都</h5>
+                <p class="text-muted mb-0">Kyoto</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col">
+          <%= link_to rooms_search_path(city: "sapporo"), class: "text-decoration-none text-dark" do %>
+            <div class="card h-100 border-0 shadow-sm">
+              <%= image_tag "/sapporo.png", class: "card-img-top", alt: "札幌" %>
+              <div class="card-body text-center">
+                <h5 class="card-title mb-1">札幌</h5>
+                <p class="text-muted mb-0">Sapporo</p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
   </div>
 </div>
