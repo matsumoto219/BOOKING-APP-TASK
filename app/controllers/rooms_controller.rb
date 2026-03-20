@@ -9,10 +9,6 @@ class RoomsController < ApplicationController
   end
 
   # READ
-  def show
-  end
-
-  # READ
   def search
     @area_keyword = params[:area_keyword]
     @freeword = params[:freeword]
@@ -49,10 +45,6 @@ class RoomsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  # UPDATE
-  def edit
   end
 
   # UPDATE
