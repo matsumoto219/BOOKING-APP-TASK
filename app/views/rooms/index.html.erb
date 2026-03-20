@@ -3,7 +3,7 @@
   <!-- タイトル/登録ボタン -->
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="fs-4 mb-0">登録済み施設一覧</h1>
-    <%= link_to "施設登録", new_room_path(back_to: rooms_path), class: "btn btn-primary" %>
+    <%= link_to "施設登録", new_room_path(back_to: rooms_path), class: "btn btn-primary bi-plus-lg px-4" %>
   </div>
 
   <!-- 一覧テーブル -->
@@ -47,10 +47,10 @@
 
               <!-- ボタンエリア -->
               <td class="d-none d-md-table-cell">
-                <%= link_to "編集", edit_room_path(room, back_to: rooms_path), class: "btn btn-outline-secondary" %>
+                <%= link_to "編集", edit_room_path(room, back_to: rooms_path), class: "btn btn-outline-secondary bi-pencil-square" %>
               </td>
               <td class="d-none d-md-table-cell">
-                <%= link_to "削除", room_path(room), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
+                <%= link_to "削除", room_path(room), class: "btn btn-outline-danger bi-trash", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
               </td>
 
               <!-- ボタンエリア(sp) -->

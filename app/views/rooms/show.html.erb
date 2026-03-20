@@ -3,7 +3,7 @@
     <div>
       <h1 class="mb-0 fs-3 fw-bold">施設詳細</h1>
     </div>
-    <%= link_to "戻る", params[:back_to].presence || rooms_path, class: "btn btn-outline-secondary" %>
+    <%= link_to "戻る", params[:back_to].presence || rooms_path, class: "btn btn-outline-secondary bi-chevron-compact-left" %>
   </div>
 
   <% if @room.errors.any? %>
@@ -43,7 +43,7 @@
 
       <div class="mb-4">
         <h3 class="fs-6 fw-semibold text-uppercase text-muted mb-2">施設紹介</h3>
-        <p class="mb-0 lh-lg"><%= @room.description.presence || "施設説明は未登録です。" %></p>
+        <p class="mb-0 lh-lg"><%= @room.description.presence %></p>
       </div>
 
       <!-- ボタンエリア -->
@@ -51,13 +51,13 @@
         <div class="d-flex justify-content-between align-items-center gap-2">
           <div class="d-flex gap-2">
             <% if user_signed_in? && current_user.id == @room.user_id %>
-              <%= link_to "編集", edit_room_path(@room, back_to: request.fullpath), class: "btn btn-outline-secondary" %>
-              <%= link_to "削除", room_path(@room), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
+              <%= link_to "編集", edit_room_path(@room, back_to: request.fullpath), class: "btn btn-outline-secondary bi-pencil-square" %>
+              <%= link_to "削除", room_path(@room), class: "btn btn-outline-danger bi-trash", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
             <% end %>
           </div>
 
           <div>
-            <%= link_to "予約に進む", new_reservation_path(room_id: @room.id, back_to: request.fullpath), class: "btn btn-primary px-4" %>
+            <%= link_to "予約に進む", new_reservation_path(room_id: @room.id, back_to: request.fullpath), class: "btn btn-primary bi-chevron-compact-right px-4" %>
           </div>
         </div>
       </div>

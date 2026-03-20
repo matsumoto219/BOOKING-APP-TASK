@@ -44,8 +44,10 @@
 
     <!-- ボタンエリア -->
     <div class="d-flex justify-content-between">
-      <%= link_to "戻る", params[:back_to].presence || rooms_path, class: "btn btn-outline-secondary" %>
-      <%= f.submit "更新", class: "btn btn-primary" %>
+      <%= link_to "戻る", params[:back_to].presence || rooms_path, class: "btn btn-outline-secondary bi-chevron-compact-left" %>
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-check-circle"></i> 更新
+      </button>
     </div>
   <% end %>
 </div>

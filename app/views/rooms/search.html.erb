@@ -39,7 +39,7 @@
                 <%= truncate(room.description, length: 40) %>
               </td>
               <td><%= number_with_delimiter(room.price) %>円</td>
-              <td><%= link_to "詳細", room_path(room, back_to: request.fullpath), class: "btn btn-outline-secondary px-3 py-2" %></td>
+              <td><%= link_to " 詳細", room_path(room, back_to: request.fullpath), class: "btn btn-outline-secondary px-3 py-2 bi-card-list" %></td>
             </tr>
           <% end %>
         </tbody>
