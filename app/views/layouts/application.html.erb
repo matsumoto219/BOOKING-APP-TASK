@@ -36,15 +36,15 @@
     <% end %>
 
     <!-- フラッシュメッセージ -->
-    <div class="container mt-2 mb-2" style="max-width: 600px;">
+    <div class="container" style="max-width: 600px;">
       <% if notice %>
-        <div class="alert alert-success text-center" role="alert">
+        <div class="alert alert-success text-center mt-2 mb-2" role="alert">
           <%= notice %>
         </div>
       <% end %>
 
       <% if alert %>
-        <div class="alert alert-danger text-center" role="alert">
+        <div class="alert alert-danger text-center mt-2 mb-2" role="alert">
           <%= alert %>
         </div>
       <% end %>
