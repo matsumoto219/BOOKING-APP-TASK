@@ -38,8 +38,10 @@
     <%= link_to "戻る", request.referer || rooms_path, class: "btn btn-outline-secondary" %>
 
     <div class="d-flex gap-2">
-      <%= link_to "削除", room_path(@room), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
-      <%= link_to "編集", edit_room_path(@room), class: "btn btn-outline-secondary" %>
+      <% if user_signed_in? && current_user.id == @room.user_id %>
+        <%= link_to "削除", room_path(@room), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "施設を削除しますか?\nこの操作は取り消せません。" } %>
+        <%= link_to "編集", edit_room_path(@room), class: "btn btn-outline-secondary" %>
+      <% end %>
       <%= link_to "予約に進む", new_reservation_path(room_id: @room.id), class: "btn btn-primary" %>
     </div>
   </div>
