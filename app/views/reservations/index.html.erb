@@ -33,7 +33,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to reservation.room.name, room_path(reservation.room), class: "text-decoration-none fw-bold" %>
+                <%= link_to reservation.room.name, room_path(reservation.room, back_to: reservations_path), class: "text-decoration-none fw-bold" %>
               </td>
               <td class="d-none d-md-table-cell" title="<%= reservation.room.description %>">
                 <%= truncate(reservation.room.description, length: 30) %>
@@ -45,7 +45,7 @@
 
               <!-- ボタンエリア -->
               <td class="d-none d-md-table-cell">
-                <%= link_to "予約変更", edit_reservation_path(reservation), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "予約変更", edit_reservation_path(reservation, back_to: request.fullpath), class: "btn btn-sm btn-outline-secondary" %>
               </td>
               <td class="d-none d-md-table-cell">
                 <%= link_to "取り消し", reservation_path(reservation), class: "btn btn-sm btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: "予約を取り消しますか？" } %>
@@ -58,7 +58,7 @@
                     <i class="bi bi-three-dots-vertical"></i>
                   </button>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li><%= link_to "予約変更", edit_reservation_path(reservation), class: "dropdown-item" %></li>
+                    <li><%= link_to "予約変更", edit_reservation_path(reservation, back_to: request.fullpath), class: "dropdown-item" %></li>
                     <li>
                       <%= link_to "取り消し", reservation_path(reservation), class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "予約を取り消しますか？" } %>
                     </li>

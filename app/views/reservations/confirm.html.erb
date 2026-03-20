@@ -50,7 +50,7 @@
   <!-- ボタンエリア -->
   <div class="d-flex justify-content-between mt-3">
     <div>
-      <%= link_to "入力画面に戻る", new_reservation_path(room_id: @room.id), class: "btn btn-outline-secondary" %>
+      <%= link_to "入力画面に戻る", new_reservation_path(room_id: @room.id, back_to: params[:back_to]), class: "btn btn-outline-secondary" %>
     </div>
 
     <div>

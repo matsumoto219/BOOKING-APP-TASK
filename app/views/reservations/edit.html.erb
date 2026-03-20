@@ -55,7 +55,7 @@
 
     <!-- ボタンエリア -->
     <div class="d-flex justify-content-between align-items-center">
-      <%= link_to "戻る", reservations_path, class: "btn btn-outline-secondary" %>
+      <%= link_to "戻る", params[:back_to].presence || reservations_path, class: "btn btn-outline-secondary" %>
       <%= f.submit "予約を変更する", class: "btn btn-primary" %>
     </div>
   <% end %>

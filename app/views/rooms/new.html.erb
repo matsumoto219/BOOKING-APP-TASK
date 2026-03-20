@@ -44,7 +44,7 @@
 
     <!-- ボタンエリア -->
     <div class="d-flex justify-content-between">
-      <%= link_to "一覧に戻る", rooms_path, class: "btn btn-outline-secondary" %>
+      <%= link_to "戻る", params[:back_to].presence || rooms_path, class: "btn btn-outline-secondary" %>
       <%= f.submit "登録", class: "btn btn-primary" %>
     </div>
   <% end %>

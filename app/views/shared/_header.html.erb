@@ -19,7 +19,7 @@
           </button>
 
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><%= link_to "施設の新規登録", new_room_path, class: "dropdown-item" %></li>
+            <li><%= link_to "施設の新規登録", new_room_path(back_to: request.fullpath), class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
 
             <li><%= link_to "予約済み一覧", reservations_path, class: "dropdown-item" %></li>
