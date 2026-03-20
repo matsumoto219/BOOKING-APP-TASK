@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,4 +12,28 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # ホーム画面のルートを追加
+  root "home#index"
+
+  # 施設検索結果ページ
+  get "rooms/search", to: "rooms#search"
+
+  # 施設(Room)のCRUD処理用ルーティング
+  resources :rooms
+
+  # 予約関連のルーティング
+  resources :reservations, only: [ :new, :create, :index, :show, :edit, :update, :destroy ] do
+    collection do
+      post :confirm
+    end
+  end
+
+  # ユーザー関連のルーティング
+  resource :user, only: [ :show ] do
+    get :edit_account
+    patch :update_account
+    get :edit_profile
+    patch :update_profile
+  end
 end

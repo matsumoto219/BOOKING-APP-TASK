@@ -15,9 +15,75 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      .flash-message-auto-hide {
+        animation: flashSlideUpFadeOut 0.5s ease forwards;
+        animation-delay: 3s;
+      }
+
+      @keyframes flashSlideUpFadeOut {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+    </style>
   </head>
 
   <body>
+    <!-- ヘッダー -->
+    <%= render "shared/header" %>
+
+    <!-- 検索ボックス -->
+    <% if (controller_name == "rooms" && action_name.in?(["index", "search"])) || (controller_name == "reservations" && action_name == "index") %>
+      <%= render "shared/search_box" %>
+    <% end %>
+
+    <!-- フラッシュメッセージ -->
+    <% if notice || alert %>
+      <div class="position-fixed top-0 start-50 translate-middle-x w-100 px-3 mb-2" style="z-index: 1080; pointer-events: none; margin-top: 80px; max-width: 640px;">
+        <% if notice %>
+          <div class="alert alert-success text-center shadow-sm mb-2 flash-message-auto-hide" role="alert" style="pointer-events: auto;">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert %>
+          <div class="alert alert-danger text-center shadow-sm mb-2 flash-message-auto-hide" role="alert" style="pointer-events: auto;">
+            <%= alert %>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- フェードアウトスクリプト -->
+      <script>
+        document.addEventListener("turbo:load", function() {
+          const notice = document.querySelector(".flash-message-auto-hide");
+          if (!notice) return;
+
+          setTimeout(() => {
+            notice.addEventListener("animationend", () => {
+              notice.remove();
+            }, { once: true });
+          }, 3000);
+        });
+      </script>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

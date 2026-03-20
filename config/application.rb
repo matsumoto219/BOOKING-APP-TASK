@@ -21,7 +21,8 @@ module BookingApp
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Tokyo"        # タイムゾーンをJSTに設定
+    config.i18n.default_locale = :ja  # ロケールを日本語に設定
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

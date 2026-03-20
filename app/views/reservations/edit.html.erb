@@ -1,0 +1,81 @@
+<div class="container mt-4 mx-auto" style="max-width: 900px;">
+  <h1 class="fs-4 mb-4">予約変更</h1>
+
+  <% if @reservation.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @reservation, data: { turbo: false } do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+
+    <!-- 施設情報 -->
+    <div class="card border-0 shadow-sm mb-4 overflow-hidden">
+      <div class="card-body p-0">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-12 col-md-4">
+            <% if @room.image.attached? %>
+              <%= image_tag @room.image, class: "w-100 h-100", style: "min-height: 220px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "/default_room.png", class: "w-100 h-100", style: "min-height: 220px; object-fit: cover;" %>
+            <% end %>
+          </div>
+
+          <div class="col-12 col-md-8">
+            <div class="p-4 h-100 d-flex flex-column justify-content-center">
+              <div class="d-flex justify-content-between align-items-start gap-3 mb-3 flex-wrap">
+                <div>
+                  <div class="text-muted small mb-1">ご予約対象の施設</div>
+                  <h2 class="fs-4 fw-bold mb-2"><%= @room.name %></h2>
+                  <p class="text-muted mb-0">
+                    <i class="bi bi-geo-alt me-1"></i><%= @room.address %>
+                  </p>
+                </div>
+
+                <div class="text-md-end">
+                  <div class="text-muted small mb-1">1泊あたり</div>
+                  <div class="fs-4 fw-bold text-primary"><%= number_with_delimiter(@room.price) %><span class="fs-6 text-dark">円</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 予約入力 -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <%= f.label :check_in, "チェックイン", class: "form-label" %>
+            <%= f.date_field :check_in, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <%= f.label :check_out, "チェックアウト", class: "form-label" %>
+            <%= f.date_field :check_out, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <%= f.label :people, "人数", class: "form-label" %>
+            <%= f.number_field :people, class: "form-control", min: 1 %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ボタンエリア -->
+    <div class="d-flex justify-content-between align-items-center">
+      <%= link_to "戻る", params[:back_to].presence || reservations_path, class: "btn btn-outline-secondary bi-chevron-compact-left" %>
+      <button type="submit" class="btn btn-primary px-4">
+        <i class="bi bi-check-circle"></i> 予約を変更する
+      </button>
+    </div>
+  <% end %>
+</div>
